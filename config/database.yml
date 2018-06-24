@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
+  username: alpine
+  password: sean
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -35,7 +35,7 @@ test:
 # Instead, provide the password as a unix environment variable when you boot
 # the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full rundown on how to provide these environment variables in a
-# production deployment.
+# production dep  loyment.
 #
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: Alpine_WMS_production
-  username: Alpine_WMS
-  password: <%= ENV['ALPINE_WMS_DATABASE_PASSWORD'] %>
+  database: alpine_wms
+  username: alpine_wms
+  password: prod #VERY UNSAFE BUT KEEP FOR TESTING AS EVERYTHING IS LOCAL
+#  password: <%= ENV['ALPINE_WMS_DATABASE_PASSWORD'] %>
