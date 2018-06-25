@@ -3,7 +3,7 @@ namespace :inventory do
   task move: :environment do
     location_id = 1
     uin = '070382171643'
-    quantity_add = -2
+    quantity_add = 1
     condition = 'NEW'
 
     data_header = ['location_id','uin','quantity','condition']
