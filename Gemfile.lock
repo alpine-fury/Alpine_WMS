@@ -1,3 +1,9 @@
+PATH
+  remote: inventory
+  specs:
+    inventory (0.1.0)
+      rails (~> 5.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -210,6 +216,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   composite_primary_keys
+  inventory!
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
