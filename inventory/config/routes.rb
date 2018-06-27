@@ -1,5 +1,5 @@
 Inventory::Engine.routes.draw do
 
-get 'inv_view' => 'inv_view#index', as: 'inv_view'
+get 'views' => 'views#index', as: 'views'
 
 end
