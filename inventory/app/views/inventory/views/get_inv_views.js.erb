@@ -1,0 +1,5 @@
+<% if @inv_views_results.blank? %>
+$('#sub-doc').html("<h3>No data available corresponding to the inputs giver.</h3>");
+<% else %>
+$('#sub-doc').html("<%= escape_javascript(render 'inv_views_table') %>");
+<% end %>

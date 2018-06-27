@@ -1,4 +1,4 @@
-class AwmsUinAttribute < ActiveRecord::Base
+class AwmsAuinAttribute < ActiveRecord::Base
   self.table_name = 'uin_attributes'
   self.primary_keys = :uin
   def self.column_headers
