@@ -5,7 +5,7 @@ module Inventory
     end
 
     def get_inv_views
-      @inv_views_results = AwmsAuinAttribute.where(uin: params[:auin])
+      @inv_views_results = AwmsUinAttribute.where(uin: params[:auin])
     end
 
   end
