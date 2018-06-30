@@ -1,1 +1,52 @@
-<h1>hi MOM!</h1>
+<head>
+  <style>
+    table { margin-bottom: 12px !import;}
+    caption { display: table-caption; text-align: left;}
+  </style>
+</head>
+
+<div class = "well well-sm">
+  <table class="table table-condensed table-bordered table-striped">
+    <thead>
+      <tr>
+        <th> AUIN </th>
+        <th> ITEM NAME </th>
+        <th> ITEM DESCIPTION </th>
+        <th> LAST UPDATED </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <%= @inv_views_attributes.auin %> </td>
+        <td> <%= @inv_views_attributes.item_name %> </td>
+        <td> <%= @inv_views_attributes.item_desc %> </td>
+        <td> <%= @inv_views_attributes.last_updated %> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4> Inventory Locations </h4>
+
+<div class = "well well-sm">
+  <table class="table table-condensed table-bordered table-striped">
+    <thead>
+      <tr>
+        <th> LOCATION_ID </th>
+        <th> RECORD QUANTITY </th>
+        <th> RECORD CONDITION </th>
+        <th> LAST UPDATED </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inv_views_locations.each do |row| %>
+      <tr>
+        <td> <%= row['location_id'] %> </td>
+        <td> <%= row['quantity'] %> </td>
+        <td> <%= row['condition'] %> </td>
+        <td> <%= row['last_updated'] %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
