@@ -1,0 +1,47 @@
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+</div>
+<table class="table table-condensed table-bordered table-striped">
+  <thead>
+    <tr>
+      <th> AUIN </th>
+      <th> ITEM NAME </th>
+      <th> ITEM DESCRIPTION </th>
+      <th> LAST UPDATED </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @auin_attributes.each do |row| %>
+    <tr>
+      <td> <%= row.auin %> </td>
+      <td> <%= row.item_name %> </td>
+      <td> <%= row.item_desc %> </td>
+      <td> <%= row.last_updated %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+
+<h4>IMPORT THAT DATA</h4>
+  <%= form_tag import_edits_auin_index_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "import CSV" %>
+  <% end %>
+</div>
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="add_inv" autocomplete="off" checked> ADD
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="remove_inv" autocomplete="off"> REMOVE
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="replace_inv" autocomplete="off"> REPLACE
+  </label>
+</div>

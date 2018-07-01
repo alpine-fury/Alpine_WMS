@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Add Composite key support to ActiveRecord
 gem 'composite_primary_keys'
+gem 'activerecord-import'
 
 # Use jquery as the JavaScript library
 gem "jquery-rails"
