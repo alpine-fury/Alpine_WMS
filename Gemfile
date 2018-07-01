@@ -44,6 +44,7 @@ gem 'jbuilder', '~> 2.5'
 
 # engines
 gem 'inventory' , path: 'inventory'
+gem 'location' , path: 'location'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -74,3 +75,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'inventory', path: 'inventory'
+
+gem 'location', path: 'location'

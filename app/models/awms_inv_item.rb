@@ -29,12 +29,17 @@ class AwmsInvItem < ActiveRecord::Base
   end
 
   def self.csv_update(file)
-    data_header = ['location_id','auin','quantity','condition','expiration_date']
+    data_headers = CSV.read(file.path, headers: true).headers
+    loc_check = CSV.read(file.path, headers: true).map { |e| e['location_id']}.uniq
+    act_loc = AwmsLocation.select('id').distinct.where(id: [loc_check])
+    return "FAILURE" if loc_check.count > act_loc.count
     @csv_load = Array.new
     CSV.foreach(file.path, headers: true) do |row|
       @csv_load << self.new(row.to_h)
     end
     puts @csv_load
-    self.import @csv_load, :validate => true, on_duplicate_key_update: data_header
+
+    self.import @csv_load, :validate => true, on_duplicate_key_update: data_headers
+    return "SUCCESS"
   end
 end

@@ -1,0 +1,80 @@
+<head>
+  <style>
+    table { margin-bottom: 12px !import;}
+    caption { display: table-caption; text-align: left;}
+  </style>
+</head>
+
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+</div>
+<table class="table table-condensed table-bordered table-striped">
+  <thead>
+    <tr>
+      <th> LOCATION ID </th>
+      <th> LOCATION NAME </th>
+      <th> LOCATION TYPE </th>
+      <th> LOCATION DESCRIPTION </th>
+      <th> PICK ORDER </th>
+      <th> LOCATION TEMPERATURE </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @location_attributes.each do |row| %>
+    <tr>
+      <td> <%= row.id %> </td>
+      <td> <%= row.location_name %> </td>
+      <td> <%= row.location_type %> </td>
+      <td> <%= row.location_desc %> </td>
+      <td> <%= row.pick_order %> </td>
+      <td> <%= row.temperature %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<div  class="container-fluid">
+  <div class="col-sm-2">
+    <h4>LOCATIONS MISSING</h4>
+    <table class="table table-condensed table-bordered table-striped">
+      <thead>
+        <tr>
+          <th> LOCATION ID </th>
+          <th> LOCATION NAME </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @missing_attr.each do |row| %>
+        <tr>
+          <td> <%= row.id %> </td>
+          <td> <%= row.location_name %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div>
+
+<h4>IMPORT LOCATION ATTRIBUTES</h4>
+  <%= form_tag import_edits_location_index_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "import CSV" %>
+  <% end %>
+</div>
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="add_inv" autocomplete="off" checked> ADD
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="remove_inv" autocomplete="off"> REMOVE
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="replace_inv" autocomplete="off"> REPLACE
+  </label>
+</div>

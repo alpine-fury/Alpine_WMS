@@ -6,8 +6,12 @@ module Inventory
     end
 
     def import
-      AwmsInvItem.csv_update(params[:file])
-      redirect_to({:action => :index}, {:success => 'Inventory updated!'})
+      case AwmsInvItem.csv_update(params[:file])
+        when "SUCCESS"
+          redirect_to({:action => :index}, {:success => 'Inventory updated!'})
+        when  "FAILURE"
+          redirect_to({:action => :index}, {:error => 'Location ID not a valid location!'})
+      end
     end
 
     def edit_inv

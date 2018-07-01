@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   # engines
   mount Inventory::Engine => '/inventory'
+  mount Location::Engine => '/location'
 end

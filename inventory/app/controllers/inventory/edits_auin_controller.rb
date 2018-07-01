@@ -8,7 +8,7 @@ module Inventory
 
     def import
       AwmsAuinAttribute.csv_update(params[:file])
-      redirect_to({:action => :index}, {:success => 'Inventory updated!'})
+      redirect_to({:action => :index}, {:success => 'AUIN attributes updated!'})
     end
 
     def edit_auin
