@@ -9,7 +9,7 @@ class AwmsInvItem < ActiveRecord::Base
   end
 
   def self.inv_update(location_id, auin, quantity_add, condition)
-    data_header = ['location_id','auin','quantity','condition']
+    data_header = ['location_id','auin','quantity','condition','expiration_date']
     is_created = self.where(location_id: location_id,auin: auin,condition: condition).to_a
     puts is_created.inspect
     if is_created.count == 0
@@ -29,7 +29,7 @@ class AwmsInvItem < ActiveRecord::Base
   end
 
   def self.csv_update(file)
-    data_header = ['location_id','auin','quantity','condition']
+    data_header = ['location_id','auin','quantity','condition','expiration_date']
     @csv_load = Array.new
     CSV.foreach(file.path, headers: true) do |row|
       @csv_load << self.new(row.to_h)

@@ -24,10 +24,29 @@
     <% end %>
   </tbody>
 </table>
+<div  class="container-fluid">
+  <div class="col-sm-2">
+    <table class="table table-condensed table-bordered table-striped">
+      <thead>
+        <tr>
+          <th> AUIN MISSING </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @missing_attr.each do |row| %>
+        <tr>
+          <td> <%= row.auin %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <div>
 
-<h4>IMPORT THAT DATA</h4>
+<h4>IMPORT AUIN ATTRIBUTES</h4>
   <%= form_tag import_edits_auin_index_path, multipart: true do %>
     <%= file_field_tag :file %>
     <%= submit_tag "import CSV" %>

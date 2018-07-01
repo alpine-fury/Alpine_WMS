@@ -3,6 +3,7 @@ module Inventory
 
     def index
       @auin_attributes = AwmsAuinAttribute.all
+      @missing_attr = AwmsInvItem.select('auin').distinct.where("auin not in (select distinct auin from auin_attributes)")
     end
 
     def import

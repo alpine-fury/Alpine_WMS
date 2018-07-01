@@ -1,6 +1,6 @@
 class AwmsAuinAttribute < ActiveRecord::Base
   self.table_name = 'auin_attributes'
-  self.primary_keys = :uin
+  self.primary_keys = :auin
   def self.column_headers
     self.column_names.map {|e| e.to_sym}
   end
