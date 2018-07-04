@@ -26,16 +26,26 @@
 </table>
 <div  class="container-fluid">
   <div class="col-sm-2">
+    <h4>MISSING AUIN ATTRIBUTES</h4>
+    <h6>Where to find units to catalog attributes.</h6>
     <table class="table table-condensed table-bordered table-striped">
       <thead>
         <tr>
-          <th> AUIN MISSING </th>
+          <th> AUIN </th>
+          <th> LOCATION ID </th>
+          <th> LOCATION NAME </th>
+          <th> QUANTITY </th>
+          <th> CONDITION </th>
         </tr>
       </thead>
       <tbody>
         <% @missing_attr.each do |row| %>
         <tr>
-          <td> <%= row.auin %> </td>
+          <td> <%= row['auin'] %> </td>
+          <td> <%= row['id'] %> </td>
+          <td> <%= row['location_name'] %> </td>
+          <td> <%= row['quantity'] %> </td>
+          <td> <%= row['condition'] %> </td>
         </tr>
         <% end %>
       </tbody>

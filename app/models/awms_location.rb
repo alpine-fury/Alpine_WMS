@@ -5,12 +5,12 @@ class AwmsLocation < ActiveRecord::Base
   end
 
   def self.csv_update(file)
-    data_header = ['id','location_name','location_type','location_desc','pick_order','temperature']
+    data_headers = CSV.read(file.path, headers: true).headers
     @csv_load = Array.new
     CSV.foreach(file.path, headers: true) do |row|
       @csv_load << self.new(row.to_h)
     end
     puts @csv_load
-    self.import @csv_load, :validate => true, on_duplicate_key_update: data_header
+    self.import @csv_load, :validate => true, on_duplicate_key_update: data_headers
   end
 end
