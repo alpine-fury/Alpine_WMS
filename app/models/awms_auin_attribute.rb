@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# AUIN Attribute information
 class AwmsAuinAttribute < ActiveRecord::Base
   self.table_name = 'auin_attributes'
   self.primary_keys = :auin
@@ -6,17 +9,22 @@ class AwmsAuinAttribute < ActiveRecord::Base
   end
 
   def self.missing_attr_location
-    missing_data = self.connection.exec_query("
+    missing_data = self.connection.exec_query('
       select distinct ii.auin
       from locations l
       join inventory_items ii
         on ii.location_id = l.id
-      where ii.auin in (select distinct auin from auin_attributes)")
+      where ii.auin in (select distinct auin from auin_attributes)')
     inv_records = []
 
     missing_data.each do |row|
       inv_records << self.connection.exec_query("
-        	(select ii.auin, l.id, l.location_name, ii.quantity, ii.condition, 'Y' as xtra
+        	(select ii.auin
+            , l.id
+            , l.location_name
+            , ii.quantity
+            , ii.condition
+            , 'Y' as xtra
         		from locations l
         		join inventory_items ii
         			on ii.location_id = l.id
@@ -24,7 +32,12 @@ class AwmsAuinAttribute < ActiveRecord::Base
         		and ii.auin = '#{row['auin']}'
         		order by l.pick_order asc)
         	union
-        	(select ii.auin, l.id, l.location_name, ii.quantity, ii.condition, 'N' as xtra
+        	(select ii.auin
+            , l.id
+            , l.location_name
+            , ii.quantity
+            , ii.condition
+            , 'N' as xtra
         		from locations l
         		join inventory_items ii
         			on ii.location_id = l.id

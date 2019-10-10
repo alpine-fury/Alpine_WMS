@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Inventory
+  # Inventory Edits controller
   class EditsInvController < ApplicationController
 
     def index
@@ -7,10 +10,12 @@ module Inventory
 
     def import
       case AwmsInvItem.csv_update(params[:file])
-        when "SUCCESS"
-          redirect_to({:action => :index}, {:success => 'Inventory updated!'})
-        when  "FAILURE"
-          redirect_to({:action => :index}, {:error => 'Location ID not a valid location!'})
+      when 'SUCCESS'
+        redirect_to({ :action => :index },
+                    { :success => 'Inventory updated!' })
+      when  'FAILURE'
+        redirect_to({ :action => :index },
+                    { :error => 'Location ID not a valid location!' })
       end
     end
 

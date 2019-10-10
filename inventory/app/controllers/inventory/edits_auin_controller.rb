@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Inventory
+  # AUIN edit controller
   class EditsAuinController < ApplicationController
 
     def index
@@ -9,7 +12,8 @@ module Inventory
 
     def import
       AwmsAuinAttribute.csv_update(params[:file])
-      redirect_to({:action => :index}, {:success => 'AUIN attributes updated!'})
+      redirect_to({ :action => :index },
+                  { :success => 'AUIN attributes updated!' })
     end
 
     def edit_auin

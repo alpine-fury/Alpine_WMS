@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Inventory::Engine.routes.draw do
 resources :edits_inv do
   collection {post :import}

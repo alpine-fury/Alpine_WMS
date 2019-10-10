@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AwmsLocation < ActiveRecord::Base
   self.table_name = 'locations'
   def self.column_headers

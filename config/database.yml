@@ -9,24 +9,59 @@
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: alpine
-  password: sean
-  socket: /var/run/mysqld/mysqld.sock
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: alpine
+#   password: sean
+#   socket: /var/run/mysqld/mysqld.sock
 
 development:
-  <<: *default
-  database: alpine_wms
+  adapter: mysql2
+  encoding: utf8mb4
+  database: alpine_wms_dev
+  host: 192.168.1.181
+  port: 3306
+  wait_timeout: 60
+  reconnect: true
+  strict: true
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  sslmode: :required
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: Alpine_WMS_test
+  adapter: mysql2
+  encoding: utf8mb4
+  database: alpine_wms_dev
+  host: 192.168.1.181
+  port: 3306
+  wait_timeout: 60
+  reconnect: true
+  strict: true
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  sslmode: :required
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+
+production:
+  adapter: mysql2
+  encoding: utf8mb4
+  database: alpine_wms_dev
+  host: 192.168.1.181
+  port: 3306
+  wait_timeout: 60
+  reconnect: true
+  strict: true
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  sslmode: :required
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -35,7 +70,7 @@ test:
 # Instead, provide the password as a unix environment variable when you boot
 # the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full rundown on how to provide these environment variables in a
-# production dep  loyment.
+# production deployment.
 #
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
@@ -47,9 +82,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: alpine_wms
-  username: alpine_wms
-  password: prod #VERY UNSAFE BUT KEEP FOR TESTING AS EVERYTHING IS LOCAL
-#  password: <%= ENV['ALPINE_WMS_DATABASE_PASSWORD'] %>
